@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Noto+Serif&family=Ropa+Sans&family=Rosario:wght@300&display=swap');
+
+/* Set up variables for easier use later on */
+:root {
+  --white        : #FFFAFF;
+  --lightGray    : #BCBAB7;
+  --darkGray     : #9A9995;
+  --black        : #010101;
+  --subTextColor : #848484; /* I ended up using one more color and one more font */
+  --logoFont     : "Libre Baskerville";
+  --mainTextFont : "Noto Serif";
+  --subTextFont  : "Rosario";
+  --subFont      : "Ropa Sans";
+}
+
+/* Affects every element */
+* {
+  box-sizing : border-box;
+  margin     : 0;
+  padding    : 0;
+}
+
+body,
+html {
+  width  : 100%;
+  height : 100%;
+  margin : 0;
+}
+
+/* Since I use flex-box a lot, I set them as classes */
+.displayFlex { display : flex; }
+.flexCol { flex-direction : column; }
+.justifyCenter { justify-content : center; }
+.alignCenter { align-items : center; }
+.justifyBetween { justify-content : space-between; }
+.justifyEvenly { justify-content : space-evenly; }
+
+/* The whole page will scroll... Stay tuned for another post :) */
+.horizontalScroller {
+  width  : 100%;
+  height : 100%;
+  overflow-x: scroll;
+}
+
+/* Gives the spacing to the initial content */
+.horizontalScroller .initialContent {
+  min-width : 60%; /* Changed */
+  height    : 100%;
+  padding   : 70px 0 70px 140px;
+}
+
+/* This is the container of the logo */
+.horizontalScroller .initialContent .logo {
+  width            : 78px;
+  height           : 78px;
+  border-radius    : 100%;
+  color            : var(--white);
+  background-color : var(--black);
+}
+
+/* This affects the text of the logo */
+.horizontalScroller .initialContent .logo p {
+  font-size   : 35px;
+  font-family : var(--logoFont);
+}
+
+/* This affects the title text */
+.horizontalScroller .initialContent .mainText .title p {
+  font-size   : 75px; /* Changed */
+  font-family : var(--mainTextFont);
+}
+
+/* This is for the subtitle text */
+.horizontalScroller .initialContent .mainText .subTitle p {
+  width       : 75%; /* Changed */
+  margin      : 10px 0 40px;
+  font-size   : 24px;
+  color       : var(--subTextColor);
+  font-family : var(--subTextFont);
+}
+
+/* This is for the "Explore" button which is already covered*/
+.horizontalScroller .initialContent .mainText .exploreButton {
+  width            : 180px;
+  height           : 80px;
+  font-size        : 30px;
+  position         : relative;     /* Is important for something in the ::before selector */
+  border           : none;
+  color            : var(--white); /* I will show these in the next post */
+  background-color : var(--black);
+  font-family      : var(--mainTextFont);
+}
+.horizontalScroller .initialContent .mainText .exploreButton::before {
+  width         : 80%;      /* I want the "content" to be 80% wide and 80% tall */
+  height        : 80%;
+  bottom        : -8px;     /* The border needs to be 8 pixels more to the bottom */
+  right         : -8px;     /* and to the right */
+  border-right  : 3px solid #000;
+  border-bottom : 3px solid #000;
+  content       : "";       /* I don't want there to be any content */
+  position      : absolute; /* This is the magic part*/
+}
+
+/* This is for the "What We Offer" text */
+.horizontalScroller .initialContent .offerSection .question {
+  font-size      : 20px;
+  text-transform : uppercase; /* I rather make text uppercase here than in HTML */
+  font-family    : var(--subFont);
+}
+
+/* Gives a top margin to each offer */
+.horizontalScroller .initialContent .offerSection .allOffers .offer {
+  margin-top : 10px;
+}
+
+/* Affects the offer icons */
+.horizontalScroller .initialContent .offerSection .allOffers .offer .offerIcon {
+  width           : 59px;
+  height          : 59px;
+  border-radius   : 100%;
+  border          : 1px solid var(--lightGray);
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+}
+
+/* Gives some spacing and the font to the text in the offers */
+.horizontalScroller .initialContent .offerSection .allOffers .offer .offerText {
+  margin-left : 10px;
+  font-family : var(--subTextFont);
+}
+
+/* Changes the font size of the main text in the offers */
+.horizontalScroller .initialContent .offerSection .allOffers .offer .offerText p:first-child {
+  font-size : 25px;
+}
+
+/* Makes the subtext of the offers lighter in color */
+.horizontalScroller .initialContent .offerSection .allOffers .offer .offerText p:last-child {
+  color : var(--darkGray);
+}
+
+/* This is for the container of the images */
+.horizontalScroller .allImages {
+  width   : 100%;
+  height  : 100%;
+  padding : 0 25px; /* I want to give the images container more padding on the sides */
+}
+
+/* This is for each image container */
+.horizontalScroller .allImages .imageContainer {
+  width               : 400px;
+  height              : calc(100vh - 140px); /* Height of each container will be the whole height - 140px of margin */
+  margin              : 0 25px;
+  background-position : center;
+  background-size     : cover;
+  background-repeat   : no-repeat;
+}
+
+/* The next 2 are to set the background images */
+.horizontalScroller .allImages .imageContainer.faroeIslands {
+  background-image : url('./images/faroeIslands.jpg');
+}
+
+.horizontalScroller .allImages .imageContainer.mountains {
+  background-image : url('./images/mountains.jpg');
+}
+
+/* This is for the dark overlay */
+.horizontalScroller .allImages .imageContainer .darkBackground {
+  width            : 100%;
+  height           : 100%;
+  padding          : 20px;
+  background-color : rgba(0, 0, 0, 0.3);
+  display          : flex;
+  flex-direction   : column;
+  justify-content  : flex-end; /* Align child elements to the end of the parent element */
+  font-family      : var(--subFont);
+}
+
+/* Color and font size for the name of the location */
+.horizontalScroller .allImages .imageContainer .darkBackground .placeName {
+  font-size : 30px;
+  color     : var(--white);
+}
+
+/* Spacing and font size for the distance of location */
+.horizontalScroller .allImages .imageContainer .darkBackground .placeDistance {
+  margin-left : 30px;
+  font-size   : 20px;
+}
+
+/* Gives the same light gray color to the number and the distance of the location */
+.horizontalScroller .allImages .imageContainer .darkBackground .placeName span,
+.horizontalScroller .allImages .imageContainer .darkBackground .placeDistance {
+  color: var(--lightGray);
+}
